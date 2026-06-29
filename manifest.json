@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "API Capture Pro - Network Inspector",
+  "version": "1.0.0",
+  "description": "Easily capture network APIs, view detailed request/response data, export as JSON, and generate instant cURL commands for Postman.",
+  "devtools_page": "devtools.html",
+  "permissions": []
+}

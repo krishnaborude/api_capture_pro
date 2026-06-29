@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>API Capture Pro - Network Inspector</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="toolbar">
+    <div class="filter-group">
+      <label for="domainFilter">Domain:</label>
+      <select id="domainFilter">
+        <option value="">All Domains</option>
+      </select>
+
+      <label for="urlFilter">Path Filter:</label>
+      <input type="text" id="urlFilter" placeholder="e.g. /api/">
+      
+      <label class="checkbox-label">
+        <input type="checkbox" id="xhrOnly" checked>
+        Fetch/XHR only
+      </label>
+    </div>
+    
+    <div class="actions-group">
+      <button id="clearBtn" class="btn btn-secondary">Clear</button>
+      <button id="exportBtn" class="btn btn-primary">Download JSON</button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table id="requestsTable">
+      <thead>
+        <tr>
+          <th style="width: 80px;">Method</th>
+          <th>URL</th>
+          <th style="width: 80px;">Status</th>
+          <th style="width: 140px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="requestsBody">
+        <tr class="empty-row">
+          <td colspan="4">No requests captured yet. Make some requests in the current tab!</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Details Side Panel -->
+  <div id="detailsPane" class="details-pane hidden">
+    <div class="details-header">
+      <div class="tabs-bar">
+        <button class="tab-btn active" data-tab="tab-headers">Headers</button>
+        <button class="tab-btn" data-tab="tab-payload">Payload</button>
+        <button class="tab-btn" data-tab="tab-response">Response</button>
+      </div>
+      <div class="details-actions" style="display: flex; gap: 8px; align-items: center;">
+        <button id="copyCmdBtn" class="btn btn-secondary btn-sm">Copy as cmd</button>
+        <button id="copyBashBtn" class="btn btn-secondary btn-sm">Copy as bash</button>
+        <button id="copyJsonBtn" class="btn btn-secondary btn-sm">Copy as JSON</button>
+        <button id="closeDetailsBtn" class="btn btn-secondary btn-sm" style="background:transparent; border:none; color:var(--text-muted); font-size:16px; margin-left: 8px;">&times;</button>
+      </div>
+    </div>
+    
+    <div class="details-content">
+      <!-- Headers Tab -->
+      <div id="tab-headers" class="tab-content active">
+        <div class="detail-section">
+          <h4>General</h4>
+          <div id="detailGeneral" class="code-block"></div>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Response Headers</h4>
+          <pre id="detailResHeaders" class="code-block"></pre>
+        </div>
+
+        <div class="detail-section">
+          <h4>Request Headers</h4>
+          <pre id="detailReqHeaders" class="code-block"></pre>
+        </div>
+      </div>
+      
+      <!-- Payload Tab -->
+      <div id="tab-payload" class="tab-content">
+        <div class="detail-section">
+          <h4>Request Payload</h4>
+          <pre id="detailReqPayload" class="code-block"></pre>
+        </div>
+      </div>
+
+      <!-- Response Tab -->
+      <div id="tab-response" class="tab-content">
+        <div class="detail-section">
+          <h4>Response Body</h4>
+          <pre id="detailResBody" class="code-block"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>
